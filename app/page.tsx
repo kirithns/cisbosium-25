@@ -166,6 +166,46 @@ const pageAnimations = {
   }
 };
 
+const AnimatedParticles = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {[...Array(50)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 bg-white/30 rounded-full"
+          initial={{
+            opacity: 0,
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight
+          }}
+          animate={{
+            opacity: [0, 0.5, 0],
+            x: `${Math.random() * 100 - 50}vw`,
+            y: `${Math.random() * 100 - 50}vh`,
+            scale: [0, 1.5, 0]
+          }}
+          transition={{
+            duration: 5 + Math.random() * 10,
+            repeat: Infinity,
+            repeatType: "loop",
+            ease: "linear"
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export default function Home() {
   return (
     <motion.div 
@@ -220,31 +260,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(50)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white/30 rounded-full"
-              initial={{
-                opacity: 0,
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight
-              }}
-              animate={{
-                opacity: [0, 0.5, 0],
-                x: `${Math.random() * 100 - 50}vw`,
-                y: `${Math.random() * 100 - 50}vh`,
-                scale: [0, 1.5, 0]
-              }}
-              transition={{
-                duration: 5 + Math.random() * 10,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "linear"
-              }}
-            />
-          ))}
-        </div>
+        <AnimatedParticles />
 
         <div className="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-12">
