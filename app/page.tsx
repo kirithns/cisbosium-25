@@ -366,7 +366,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-12">
-            <motion.div className="w-full md:w-1/2 max-w-2xl" variants={fadeInLeft}>
+            <motion.div className="w-full md:w-1/4 max-w-2xl" variants={fadeInLeft}>
               <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-center md:text-left">
                 <span className="text-blue-500">C</span>
                 <span className="text-white">i</span>
@@ -384,6 +384,33 @@ export default function Home() {
                   <Link href="/events">Explore Events</Link>
                 </Button>
               </div>
+            </motion.div>
+
+            <motion.div 
+              className="w-full md:w-1/4 flex justify-center" 
+              variants={fadeInUp}
+            >
+              <motion.div
+                className="relative w-64 h-64 sm:w-80 sm:h-80 overflow-hidden bg-transparent"
+                whileHover={{ scale: 1.05 }}
+                animate={{ 
+                  rotateX: [0, 0],
+                  rotateY: [0, 360]
+                }}
+                transition={{ 
+                  rotateX: { duration: 20, repeat: Infinity, ease: "linear" },
+                  rotateY: { duration: 15, repeat: Infinity, ease: "linear" },
+                  scale: { type: "spring", stiffness: 300, damping: 200 }
+                }}
+              >
+                <Image
+                  src="/cis.png"
+                  alt="CSBS Symposium Logo"
+                  fill
+                  className="object-contain mix-blend-screen"
+                  priority
+                />
+              </motion.div>
             </motion.div>
             
             <motion.div 

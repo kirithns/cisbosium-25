@@ -20,7 +20,7 @@ export function CursorEffects() {
   const [isClient, setIsClient] = useState(false)
 
   const colors = [
-    'rgba(255, 217, 0, 0.93)',   // Gold
+    'rgb(255, 217, 0)',   // Gold
     'rgba(255, 0, 0, 0.8)', // White
     'rgb(85, 0, 255)', // Purple
     'rgba(0, 255, 251, 0.98)'  // Light Blue

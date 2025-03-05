@@ -100,15 +100,14 @@ body {
   }
 }
 
-/* Custom Cursor Styles */
+/* Remove custom cursor styles and restore default cursor */
 * {
-  cursor: none !important;
+  cursor: auto !important;
 }
 
 a, button, [role="button"], select, input[type="submit"], input[type="button"], input[type="reset"], input[type="file"], 
 .cursor-pointer, [onclick], [data-clickable="true"] {
-  cursor: none !important;
-  transition: transform 0.2s ease;
+  cursor: pointer !important;
 }
 
 /* Hover effect for clickable elements */
@@ -116,38 +115,6 @@ a:hover, button:hover, [role="button"]:hover {
   transform: scale(1.05);
   filter: brightness(1.1);
   transition: all 0.3s ease;
-}
-
-/* Disable default cursor */
-html, body {
-  cursor: none !important;
-}
-
-/* Custom cursor animations */
-@keyframes cursorPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-}
-
-@keyframes sparkle {
-  0% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0) rotate(180deg);
-  }
 }
 
 /* Disable cursor effects on mobile/touch devices */
