@@ -419,16 +419,16 @@ const busRoutes: Route[] = [
           className="space-y-6"
         >
           <AnimatePresence>
-          {filteredRoutes.map((route, index) => (
+          {filteredRoutes.map((route) => (
             <motion.div
-                key={route.busNumber}
-                layout
+              key={route.busNumber}
+              layout
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-              >
-                <BusCard route={route} />
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              <BusCard route={route} />
             </motion.div>
           ))}
           </AnimatePresence>

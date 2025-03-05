@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Trophy, Users, Calendar } from 'lucide-react'
+import { Users } from 'lucide-react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
