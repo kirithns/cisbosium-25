@@ -68,7 +68,7 @@ const CountdownTimer = () => {
 
   return (
     <motion.div 
-      className="flex flex-wrap justify-center gap-8 p-8 bg-white/10 backdrop-blur-sm rounded-2xl border-2 border-violet-500/20"
+      className="flex flex-wrap justify-center gap-4 sm:gap-8 p-4 sm:p-8 bg-white/10 backdrop-blur-sm rounded-2xl border-2 border-violet-500/20"
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -76,25 +76,27 @@ const CountdownTimer = () => {
       {Object.entries(timeLeft).map(([label, value]) => (
         <motion.div
           key={label}
-          className="flex flex-col items-center"
-          whileHover={{ scale: 1.1 }}
+          className="flex flex-col items-center px-2 sm:px-4"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
           <motion.div
-            className="text-6xl sm:text-7xl font-black text-white mb-2"
+            className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-2"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
             <motion.span
               animate={{
-                scale: [1, 1.2, 1],
+                scale: [1, 1.1, 1],
                 rotate: value === 0 ? [0, 360] : 0,
               }}
               transition={{
                 duration: 0.5,
                 repeat: value === 0 ? Infinity : 0,
-                repeatType: "reverse"
+                repeatType: "reverse",
+                ease: "easeInOut"
               }}
               className="inline-block"
               style={{
@@ -104,22 +106,23 @@ const CountdownTimer = () => {
               {value.toString().padStart(2, '0')}
             </motion.span>
             <motion.span
-              className="ml-2 text-4xl"
+              className="ml-2 text-2xl sm:text-3xl md:text-4xl"
               animate={{
-                scale: [1, 1.2, 1],
-                y: [0, -10, 0]
+                scale: [1, 1.1, 1],
+                y: [0, -5, 0]
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                repeatType: "reverse"
+                repeatType: "reverse",
+                ease: "easeInOut"
               }}
             >
               {getCharacterAnimation(value, label)}
             </motion.span>
           </motion.div>
           <motion.span
-            className="text-lg sm:text-xl text-white/80 font-medium capitalize"
+            className="text-base sm:text-lg md:text-xl text-white/80 font-medium capitalize"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -215,47 +218,50 @@ export default function Home() {
       animate="animate"
     >
       <motion.section
-        className="relative bg-gradient-to-b from-violet-950 via-violet-900 to-violet-800 text-white py-20 overflow-hidden"
+        className="relative bg-gradient-to-b from-violet-950 via-violet-900 to-violet-800 text-white py-12 sm:py-20 px-4 sm:px-8 overflow-hidden"
         variants={pageAnimations.item}
       >
         <div className="absolute inset-0">
           <motion.div 
-            className="absolute top-0 -left-4 w-72 h-72 bg-violet-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+            className="absolute top-0 -left-4 w-48 sm:w-72 h-48 sm:h-72 bg-violet-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
             animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          />
-          <motion.div 
-            className="absolute top-0 -right-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
-            animate={{
-              x: [0, -100, 0],
-              y: [0, 100, 0],
-              scale: [1, 1.5, 1],
+              x: [0, 50, 0],
+              y: [0, 25, 0],
+              scale: [1, 1.1, 1],
             }}
             transition={{
               duration: 15,
               repeat: Infinity,
-              repeatType: "reverse"
+              repeatType: "reverse",
+              ease: "easeInOut"
             }}
           />
           <motion.div 
-            className="absolute -bottom-8 left-1/2 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+            className="absolute top-0 -right-4 w-48 sm:w-72 h-48 sm:h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
             animate={{
               x: [0, -50, 0],
-              y: [0, -50, 0],
-              scale: [1, 1.3, 1],
+              y: [0, 50, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute -bottom-8 left-1/2 w-48 sm:w-72 h-48 sm:h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+            animate={{
+              x: [-25, 25, -25],
+              y: [0, -25, 0],
+              scale: [1, 1.15, 1],
             }}
             transition={{
               duration: 18,
               repeat: Infinity,
-              repeatType: "reverse"
+              repeatType: "reverse",
+              ease: "easeInOut"
             }}
           />
         </div>

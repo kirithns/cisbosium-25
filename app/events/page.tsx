@@ -17,10 +17,6 @@ import {
 } from "@/components/ui/dialog"
 import { Users } from 'lucide-react'
 
-// Remove unused imports
-// import { Trophy, Calendar } from 'lucide-react'
-// import { FaInfoCircle } from 'react-icons/fa'
-
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -147,8 +143,8 @@ export default function Events() {
     return (
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow flex items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
+          <div className="absolute inset-0 flex">
+            <div className="w-1/2 h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-black/50 z-10" />
               <Image
                 src="/Tech.gif"
@@ -161,7 +157,7 @@ export default function Events() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 mix-blend-overlay" />
             </div>
-            <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
+            <div className="w-1/2 h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-black/50 z-10" />
               <Image
                 src="/Online.gif"
@@ -176,7 +172,7 @@ export default function Events() {
             </div>
           </div>
 
-          <div className="max-w-4xl w-full mx-auto relative z-20 px-4">
+          <div className="max-w-4xl w-full mx-auto relative z-20">
             <motion.h2
               variants={fadeInUp}
               initial="initial"
