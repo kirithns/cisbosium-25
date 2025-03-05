@@ -2,7 +2,7 @@ body {
   background-color: black;
   margin: 0;
   padding: 0;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -26,13 +26,21 @@ body {
   font-size: 2.5rem;
   margin-bottom: 0;
   margin-top: -30px;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
-  background: linear-gradient(45deg, #00abe1, #fff);
+  background: linear-gradient(45deg, #00abe1, #fff, #00abe1);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .bus-search-container {
@@ -52,12 +60,15 @@ body {
   color: #fff;
   font-size: 1.1rem;
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
 
 .bus-search-input:focus {
   outline: none;
   border-color: #00abe1;
-  box-shadow: 0 0 15px rgba(0, 171, 225, 0.2);
+  box-shadow: 0 0 20px rgba(0, 171, 225, 0.3);
+  transform: translateY(-2px);
 }
 
 .bus-search-icon {
@@ -66,6 +77,11 @@ body {
   top: 50%;
   transform: translateY(-50%);
   color: #00abe1;
+  transition: all 0.3s ease;
+}
+
+.bus-search-container:hover .bus-search-icon {
+  transform: translateY(-50%) scale(1.1);
 }
 
 .bus-routes-list {
@@ -82,17 +98,40 @@ body {
 .bus-route-card {
   background: rgba(22, 31, 109, 0.8);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 15px;
   padding: 20px;
   border: 1px solid rgba(0, 171, 225, 0.2);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 2;
+  overflow: hidden;
+}
+
+.bus-route-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 171, 225, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.bus-route-card:hover::before {
+  left: 100%;
 }
 
 .bus-route-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 171, 225, 0.2);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 171, 225, 0.2);
+  border-color: rgba(0, 171, 225, 0.4);
 }
 
 .route-header {
@@ -108,22 +147,51 @@ body {
   color: #fff;
   font-size: 1.3rem;
   margin-bottom: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+.place-info h2::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #00abe1, transparent);
+  transition: width 0.3s ease;
+}
+
+.place-info:hover h2::after {
+  width: 100%;
 }
 
 .bus-number {
   color: #00abe1;
   font-size: 0.9rem;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(0, 171, 225, 0.3);
 }
 
 .route-header i {
   font-size: 1.5rem;
   color: #00abe1;
+  transition: all 0.3s ease;
+}
+
+.bus-route-card:hover .route-header i {
+  transform: scale(1.2) rotate(360deg);
 }
 
 .route-details {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
   line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+.bus-route-card:hover .route-details {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 @keyframes fadeIn {
@@ -173,4 +241,4 @@ body {
   .bus-routes-list {
     grid-template-columns: 1fr;
   }
-} 
+}

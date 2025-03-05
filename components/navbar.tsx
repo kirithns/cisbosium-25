@@ -24,7 +24,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 group">
             <motion.div
               className="relative"
               animate={{
@@ -42,7 +42,7 @@ const Navbar = () => {
               }}
             >
               <motion.div
-                className="absolute -inset-2 bg-gradient-to-r from-violet-500 to-blue-500 rounded-full opacity-30 blur-md"
+                className="absolute -inset-2 bg-gradient-to-r from-violet-500 via-blue-500 to-purple-500 rounded-full opacity-30 blur-md"
                 animate={{
                   scale: [1, 1.2, 1],
                   opacity: [0.3, 0.5, 0.3],
@@ -54,7 +54,7 @@ const Navbar = () => {
                 }}
               />
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-blue-500/20 rounded-full"
+                className="absolute inset-0 bg-gradient-to-r from-violet-500/20 via-blue-500/20 to-purple-500/20 rounded-full"
                 animate={{
                   rotate: [0, 360],
                 }}
@@ -69,7 +69,7 @@ const Navbar = () => {
                 alt="CSBS Logo"
                 width={40}
                 height={40}
-                className="rounded-md relative z-10 hover:scale-110 transition-transform duration-300"
+                className="rounded-md relative z-10 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-violet-500/20"
               />
             </motion.div>
             <div className="flex flex-col">
@@ -82,7 +82,7 @@ const Navbar = () => {
                 }}
               >
                 <motion.span
-                  className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-blue-500/20 blur-sm rounded-lg"
+                  className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 via-blue-500/20 to-purple-500/20 blur-sm rounded-lg"
                   animate={{
                     opacity: [0.2, 0.4, 0.2],
                   }}
@@ -159,17 +159,22 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden sm:flex flex-1 items-center justify-end space-x-4">
           {navItems.map((item) => (
-            <Link
+            <motion.div
               key={item.name}
-              href={item.path}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                pathname === item.path
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-accent"
-              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {item.name}
-            </Link>
+              <Link
+                href={item.path}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                  pathname === item.path
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent hover:shadow-md hover:shadow-accent/20"
+                }`}
+              >
+                {item.name}
+              </Link>
+            </motion.div>
           ))}
           <ModeToggle />
         </div>
@@ -184,7 +189,10 @@ const Navbar = () => {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[250px] sm:w-[300px]">
+            <SheetContent
+              side="right"
+              className="w-[250px] sm:w-[300px] bg-background/95 backdrop-blur-lg"
+            >
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -197,6 +205,8 @@ const Navbar = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <Link
                       href={item.path}
