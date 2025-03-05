@@ -142,29 +142,29 @@ export default function Events() {
   if (mode === 'choice') {
     return (
       <div className="flex flex-col min-h-screen">
-        <div className="flex-grow flex items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 flex">
-            <div className="w-1/2 h-full relative overflow-hidden">
+        <div className="flex-grow flex items-center justify-center relative overflow-hidden px-4 py-8 sm:py-12">
+          <div className="absolute inset-0 flex flex-col sm:flex-row">
+            <div className="w-full sm:w-1/2 h-1/2 sm:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-black/50 z-10" />
               <Image
                 src="/Tech.gif"
                 alt="Technical Background"
-                width={3000} // Adjust width as needed
-                height={100} // Adjust height as needed
-                className="object-contain"
+                width={3000}
+                height={100}
+                className="object-cover w-full h-full"
                 priority
                 quality={100}
               />
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 mix-blend-overlay" />
             </div>
-            <div className="w-1/2 h-full relative overflow-hidden">
+            <div className="w-full sm:w-1/2 h-1/2 sm:h-full relative overflow-hidden">
               <div className="absolute inset-0 bg-black/50 z-10" />
               <Image
                 src="/Online.gif"
                 alt="Online Background"
-                width={3000} // Adjust width as needed
-                height={100} // Adjust height as needed
-                className="object-contain"
+                width={3000}
+                height={100}
+                className="object-cover w-full h-full"
                 priority
                 quality={100}
               />
@@ -172,17 +172,17 @@ export default function Events() {
             </div>
           </div>
 
-          <div className="max-w-4xl w-full mx-auto relative z-20">
+          <div className="max-w-4xl w-full mx-auto relative z-20 px-4">
             <motion.h2
               variants={fadeInUp}
               initial="initial"
               animate="animate"
-              className="text-3xl md:text-4xl font-bold text-white mb-12 text-center drop-shadow-lg"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-8 sm:mb-12 text-center drop-shadow-lg"
             >
               SELECT EVENT TYPE
             </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 max-w-2xl mx-auto">
               <motion.div
                 variants={cardVariants}
                 initial="hidden"
@@ -225,16 +225,16 @@ export default function Events() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="relative bg-gradient-to-b from-violet-950 via-violet-900 to-violet-800 text-white py-8 overflow-hidden">
+      <div className="relative bg-gradient-to-b from-violet-950 via-violet-900 to-violet-800 text-white py-6 sm:py-8 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="flex items-center justify-between">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center sm:text-left">
               {mode.toUpperCase()} EVENTS
             </h2>
             <Button
               onClick={() => setMode('choice')}
               variant="outline"
-              className="text-violet-400 border-violet-500/20 hover:bg-violet-900/50"
+              className="text-violet-400 border-violet-500/20 hover:bg-violet-900/50 w-full sm:w-auto"
             >
               Change Mode
             </Button>
@@ -243,13 +243,13 @@ export default function Events() {
       </div>
 
       <motion.div
-        className="container mx-auto px-4 py-16 relative z-20 -mt-8"
+        className="container mx-auto px-4 py-8 sm:py-16 relative z-20 -mt-4 sm:-mt-8"
         initial="initial"
         animate="animate"
         variants={fadeInUp}
       >
         {mode === 'online' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto mb-8 sm:mb-12">
             {events
               .filter(event => ['Stock Market Challenge', 'MystIQ'].includes(event.title))
               .map((event, index) => (
@@ -260,17 +260,17 @@ export default function Events() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Card className="group h-full flex flex-col bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-violet-100 dark:border-violet-900 hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300">
-                    <CardHeader>
-                      <CardTitle className="text-violet-800 dark:text-violet-200 flex items-center justify-between">
+                    <CardHeader className="p-4 sm:p-6">
+                      <CardTitle className="text-lg sm:text-xl text-violet-800 dark:text-violet-200 flex items-center justify-between">
                         {event.title}
                       </CardTitle>
-                      <CardDescription className="flex items-center gap-2 text-violet-600 dark:text-violet-400">
+                      <CardDescription className="text-sm flex items-center gap-2 text-violet-600 dark:text-violet-400">
                         <Users className="w-4 h-4" />
                         Coordinators: {event.coordinators}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="flex-grow">
-                      <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
+                    <CardContent className="flex-grow p-4 sm:p-6">
+                      <div className="relative h-40 sm:h-48 mb-4 rounded-lg overflow-hidden">
                         <Image
                           src={event.image}
                           alt={event.title}
@@ -285,8 +285,8 @@ export default function Events() {
                       </div>
                       <p className="mt-4 text-gray-600 dark:text-gray-300">{event.description}</p>
                     </CardContent>
-                    <CardFooter className="flex flex-wrap justify-between mt-auto gap-4 pt-6">
-                      <div className="flex gap-4 items-center">
+                    <CardFooter className="flex flex-wrap justify-center sm:justify-between mt-auto gap-3 sm:gap-4 p-4 sm:p-6">
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 items-center">
                         <Link
                           href={event.whatsappLink}
                           target="_blank"
@@ -322,7 +322,7 @@ export default function Events() {
                               View Details
                             </Button>
                           </DialogTrigger>
-                          <DialogContent className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
+                          <DialogContent className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm max-w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
                             <motion.div
                               initial={{ opacity: 0, y: 20, scale: 0.95 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -508,7 +508,7 @@ export default function Events() {
           </div>
         )}
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {events
             .filter(event => {
               if (mode === 'technical') {
@@ -526,17 +526,17 @@ export default function Events() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Card className="group h-full flex flex-col bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-violet-100 dark:border-violet-900 hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="text-violet-800 dark:text-violet-200 flex items-center justify-between">
+                  <CardHeader className="p-4 sm:p-6">
+                    <CardTitle className="text-lg sm:text-xl text-violet-800 dark:text-violet-200 flex items-center justify-between">
                       {event.title}
                     </CardTitle>
-                    <CardDescription className="flex items-center gap-2 text-violet-600 dark:text-violet-400">
+                    <CardDescription className="text-sm flex items-center gap-2 text-violet-600 dark:text-violet-400">
                       <Users className="w-4 h-4" />
                       Coordinators: {event.coordinators}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="flex-grow">
-                    <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
+                  <CardContent className="flex-grow p-4 sm:p-6">
+                    <div className="relative h-40 sm:h-48 mb-4 rounded-lg overflow-hidden">
                       <Image
                         src={event.image}
                         alt={event.title}
@@ -551,8 +551,8 @@ export default function Events() {
                     </div>
                     <p className="mt-4 text-gray-600 dark:text-gray-300">{event.description}</p>
                   </CardContent>
-                  <CardFooter className="flex flex-wrap justify-between mt-auto gap-4 pt-6">
-                    <div className="flex gap-4 items-center">
+                  <CardFooter className="flex flex-wrap justify-center sm:justify-between mt-auto gap-3 sm:gap-4 p-4 sm:p-6">
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 items-center">
                       <Link
                         href={event.whatsappLink}
                         target="_blank"
@@ -588,7 +588,7 @@ export default function Events() {
                             View Details
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
+                        <DialogContent className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm max-w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
                           <motion.div
                             initial={{ opacity: 0, y: 20, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
