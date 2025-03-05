@@ -417,7 +417,7 @@ export default function Home() {
                 <li>Registration fee: free</li>
                 <li>Team size depends on events but each person should register individually </li>
                 <li>Bring college ID cards which is mandatory</li>
-                <li>On-spot registration is not available</li>
+                <li>On-spot registration is available</li>
               </ul>
             </Card>
             <Card className="p-6 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-violet-100 dark:border-violet-900">
