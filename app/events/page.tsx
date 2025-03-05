@@ -39,13 +39,13 @@ const events = [
     image: "/rs.png",
     coordinators: "Varshaa, Aswin and Partha",
     icon: "GraduationCap",
-    details: "Craft your groundbreaking research into a compelling paper and showcase your clarity, creativity, and thought leadership. Research Guru invites students from diverse fields to present their innovative ideas and research without any domain restrictions.",
+    details: "Craft your groundbreaking research into a compelling paper and showcase your clarity, creativity, and thought leadership. Research Guru invites students from diverse fields to present their innovative ideas and research without any domain restrictions.",
     rules: [
       "Abstract submissions are mandatory before the deadline.",
       "Papers must follow the IEEE format.",
       "Presentations must use a PPT (max 8 slides).",
       "5-6 minutes for presentation + 5 minutes Q&A.",
-      "The jury's decision will be final and binding."
+      "The jury&apos;s decision will be final and binding."
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdd9CCQ1OMd3Nf90vifE5UJro177AgZGBWAKlkqJHomY5r8gg/viewform",
     whatsappLink: "https://chat.whatsapp.com/J4UoDrcLv1bCpq61v9zqxo",
@@ -86,11 +86,11 @@ const events = [
   },
   {
     title: "Think Hack",
-    description: "Crack the code, race the clock—to seize the Ultimate Innovator title!.",
+    description: "Crack the code, race the clock—to seize the Ultimate Innovator title!.",
     image: "/th.png",
     coordinators: "Siva, Sharvesh Guru, Nivetha",
     icon: "BrainCircuit",
-    details: "Put your skills to the test in this high-energy hackathon!  Compete, create, and showcase your problem-solving abilities in an unforgettable experience.",
+    details: "Put your skills to the test in this high-energy hackathon!  Compete, create, and showcase your problem-solving abilities in an unforgettable experience.",
     rules: [
       "Teams of 1-3 members allowed.",
       "Participants should bring their own laptops.",

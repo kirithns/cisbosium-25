@@ -167,7 +167,7 @@ export default function RegisterNowCard() {
                       transition={{ delay: 1.3 }}
                     >
                       For any questions or further details, feel free to contact our support team.
-                      We're here to help you every step of the way.
+                      We are here to help you every step of the way.
                     </motion.p>
                   </section>
                 </div>
