@@ -1,138 +1,20 @@
 "use client"
 
-import DeveloperCard from '@/components/developer-card'
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CalendarDays, Users, GraduationCap, Presentation, Code, BrainCircuit, Coins, Lock } from 'lucide-react'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import DeveloperCard from '@/components/developer-card';
+import { Card } from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CalendarDays } from 'lucide-react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 }
 }
-
-const fadeInLeft = {
-  initial: { opacity: 0, x: -60 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.6 }
-}
-
-const fadeInRight = {
-  initial: { opacity: 0, x: 60 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.6 }
-}
-
-const events = [
-  {
-    title: "Research Guru",
-    description: "Unleash your research potential and showcase innovative ideas.",
-    image: "/rs.png",
-    coordinators: "Varshaa, Aswin and Partha",
-    icon: "GraduationCap",
-    details: "Craft your groundbreaking research into a compelling paper and showcase your clarity, creativity, and thought leadership. Research Guru invites students from diverse fields to present their innovative ideas and research without any domain restrictions.",
-    rules: [
-      "Abstract submissions are mandatory before the deadline.",
-      "Papers must follow the IEEE format.",
-      "Presentations must use a PPT (max 8 slides).",
-      "5-6 minutes for presentation + 5 minutes Q&A.",
-      "The jury's decision will be final and binding."
-    ],
-    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSe-JlAhu5uAHSqg4kORVPhGeOe8M2_8X6_Fd40YftGZfbKIfQ/viewform?usp=header"
-  },
-  {
-    title: "Shark Tank",
-    description: "Pitch your innovative business ideas to a panel of industry experts.",
-    image: "/shark_tank.png",
-    coordinators: "Harini, Keerthana and Yuvasri",
-    icon: "Presentation",
-    details: "Get a chance to present your business ideas to a panel of successful entrepreneurs and investors. Receive valuable feedback and potentially secure funding for your startup.",
-    rules: [
-      "Teams of 1-4 members allowed.",
-      "Business proposals must be submitted before the deadline.",
-      "Presentation format: PPT (max 10 slides).",
-      "Each team gets 6-8 minutes to pitch + 5 minutes Q&A.",
-      "Proposals from all domains welcome."
-    ],
-    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSe-JlAhu5uAHSqg4kORVPhGeOe8M2_8X6_Fd40YftGZfbKIfQ/viewform?usp=header"
-  },
-  {
-    title: "Coding and Debugging",
-    description: "Showcase your coding skills and debug challenging programs.",
-    image: "/buc.png",
-    coordinators: "Sheegan Sri, Prasath and Niktha Sahin",
-    icon: "Code",
-    details: "Demonstrate your programming prowess in this coding competition. Face challenging problems and debug complex code to prove your skills in various programming languages.",
-    rules: [
-      "Solo or duo participation allowed.",
-      "Supported languages: C, C++, Python, Java.",
-      "Participants must bring their own laptops if possible.",
-      "Time-based scoring: Faster completion earns more points.",
-      "No external help or collaboration outside the team."
-    ],
-    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSe-JlAhu5uAHSqg4kORVPhGeOe8M2_8X6_Fd40YftGZfbKIfQ/viewform?usp=header"
-  },
-  {
-    title: "Think Hack",
-    description: "Crack the code, race the clock—to seize the Ultimate Innovator title!.",
-    image: "/th.png",
-    coordinators: "Siva, Sharvesh Guru, Nivetha",
-    icon: "BrainCircuit",
-    details: "Put your skills to the test in this high-energy hackathon!  Compete, create, and showcase your problem-solving abilities in an unforgettable experience.",
-    rules: [
-      "Teams of 1-3 members allowed.",
-      "Participants should bring their own laptops.",
-      "Problem statements will be provided at the start of the event.",
-      "Use of AI tools is permitted but must be disclosed.",
-      "Judging criteria include innovation, accuracy, and efficiency."
-    ],
-    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSe-JlAhu5uAHSqg4kORVPhGeOe8M2_8X6_Fd40YftGZfbKIfQ/viewform?usp=header"
-  },
-  {
-    title: "Stock Market Challenge",
-    description: "Test your financial acumen in a simulated stock market environment.",
-    image: "/vwsc.jpg",
-    coordinators: "Kavindar ,Venkat Sai and Hari",
-    icon: "Coins",
-    details: "Experience the thrill of stock trading in a risk-free environment. Make investment decisions, analyze market trends, and compete to build the most profitable portfolio.",
-    rules: [
-      "Solo or duo participation allowed.",
-      "Participants start with a virtual budget.",
-      "Trades and market fluctuations will be simulated in real-time.",
-      "Strategies must be ethical and fair.",
-      "The highest profit at the end of the competition wins."
-    ],
-    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSe-JlAhu5uAHSqg4kORVPhGeOe8M2_8X6_Fd40YftGZfbKIfQ/viewform?usp=header"
-  },
-  {
-    title: "MystIQ",
-    description: "Unravel cryptic clues and uncover a hidden secret!",
-    image: "/m.jpg",
-    coordinators: "Sarvesh, joilin, Rithu Varshini",
-    details: "Solve puzzles and decipher messages in this thrilling adventure. Put your detective skills to the test!",
-    rules: [
-      "Participants must register before the event.",
-      "Solo or Duo participation allowed.",
-      "Time-based scoring: The fastest team wins!",
-      "Respect and fair play must be maintained.",
-      "No external help or cheating allowed."
-    ],
-    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSe-JlAhu5uAHSqg4kORVPhGeOe8M2_8X6_Fd40YftGZfbKIfQ/viewform?usp=header"
-  }
-];
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -366,7 +248,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-12">
-            <motion.div className="w-full md:w-1/4 max-w-2xl" variants={fadeInLeft}>
+            <motion.div className="w-full md:w-1/4 max-w-2xl" variants={fadeInUp}>
               <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-center md:text-left">
                 <span className="text-blue-500">C</span>
                 <span className="text-white">i</span>
@@ -374,7 +256,7 @@ export default function Home() {
                 <span className="text-white">o</span>
                 <span className="text-blue-500">S</span>
                 <span className="text-white">ium</span>
-                <span className="text-blue-500">'25</span>
+                <span className="text-blue-500"> 25</span>
               </h1>
               <p className="text-lg sm:text-xl mb-8 text-violet-200 text-center md:text-left">
                 Empowering Innovation and Business Acumen
@@ -415,7 +297,7 @@ export default function Home() {
             
             <motion.div 
               className="w-full md:w-1/2 flex justify-center" 
-              variants={fadeInRight}
+              variants={fadeInUp}
             >
               <CountdownTimer />
             </motion.div>

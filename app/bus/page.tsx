@@ -4,12 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiMapPin, FiX } from 'react-icons/fi';
 import { FaBus } from 'react-icons/fa';
-import { Button } from "@/components/ui/button";
-import Image from "next/image"
-import Link from "next/link"
-import { Card } from "@/components/ui/card"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CalendarDays } from 'lucide-react'
 
 interface Route {
   place: string;
@@ -147,23 +141,6 @@ const BusCard = ({ route }: { route: Route }) => {
     </>
   );
 };
-
-const MovingBus = () => (
-  <motion.div
-    initial={{ x: -100 }}
-    animate={{ 
-      x: ['100%', '-10%'],
-      y: [0, -3, 0, 3, 0]
-    }}
-    transition={{ 
-      x: { duration: 15, repeat: Infinity, ease: "linear" },
-      y: { duration: 2, repeat: Infinity, ease: "linear" }
-    }}
-    className="absolute top-[-20px] left-0 text-violet-400/70"
-  >
-    <FaBus size={40} />
-  </motion.div>
-);
 
 export default function Bus() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -370,7 +347,6 @@ const busRoutes: Route[] = [
     <div className="min-h-screen p-4 sm:p-8 bg-gradient-to-br from-gray-900/50 to-gray-900 overflow-y-auto">
       <div className="max-w-4xl mx-auto min-h-full">
         <div className="relative mb-16">
-          <MovingBus />
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

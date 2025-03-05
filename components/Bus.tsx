@@ -383,7 +383,7 @@ export default function Bus() {
           className="space-y-6"
         >
           <AnimatePresence>
-            {filteredRoutes.map((route, index) => (
+            {filteredRoutes.map((route) => (
               <motion.div
                 key={route.busNumber}
                 layout

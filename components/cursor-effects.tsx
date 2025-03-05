@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
@@ -20,13 +20,6 @@ export function CursorEffects() {
   const [sparks, setSparks] = useState<SparkParticle[]>([])
   const [isClient, setIsClient] = useState(false)
 
-  const colors = [
-    'rgb(255, 217, 0)',   // Gold
-    'rgba(255, 0, 0, 0.8)', // White
-    'rgb(85, 0, 255)', // Purple
-    'rgba(0, 255, 251, 0.98)'  // Light Blue
-  ]
-
   useEffect(() => {
     setIsClient(true)
     let trailId = 0
@@ -34,22 +27,7 @@ export function CursorEffects() {
     let lastTrailTime = 0
     let lastSparkTime = 0
 
-    const createSpark = (x: number, y: number) => {
-      const newSparks: SparkParticle[] = []
-      for (let i = 0; i < 8; i++) {
-        const angle = (Math.PI * 4 * i) / 9 + Math.random() * 8.5
-        newSparks.push({
-          id: sparkId++,
-          x,
-          y,
-          angle,
-          speed: 2 + Math.random() * 3,
-          size: 3 + Math.random() * 2,
-          color: colors[Math.floor(Math.random() * colors.length)]
-        })
-      }
-      return newSparks
-    }
+    const colors = ['#FFD700', '#FFA500', '#FF69B4', '#00FF00', '#4169E1', '#FF4500']
 
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
@@ -67,9 +45,22 @@ export function CursorEffects() {
 
       // Add spark particles
       if (now - lastSparkTime > 100) {
+        const newSparks: SparkParticle[] = []
+        for (let i = 0; i < 8; i++) {
+          const angle = (Math.PI * 4 * i) / 9 + Math.random() * 8.5
+          newSparks.push({
+            id: sparkId++,
+            x: e.clientX,
+            y: e.clientY,
+            angle,
+            speed: 2 + Math.random() * 3,
+            size: 3 + Math.random() * 2,
+            color: colors[Math.floor(Math.random() * colors.length)]
+          })
+        }
         setSparks(prevSparks => [
           ...prevSparks.slice(-50),
-          ...createSpark(e.clientX, e.clientY)
+          ...newSparks
         ])
         lastSparkTime = now
       }
@@ -96,7 +87,7 @@ export function CursorEffects() {
       window.removeEventListener('mousemove', handleMouseMove)
       clearInterval(animationFrame)
     }
-  }, [colors])
+  }, [])
 
   if (!isClient) return null
 

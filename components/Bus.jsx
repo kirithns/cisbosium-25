@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSearch, FiArrowRight, FiMapPin } from 'react-icons/fi';
+import { FiSearch, FiMapPin } from 'react-icons/fi';
 import './Bus.css'; // Ensure you have the corresponding CSS file
 
 const BusCard = ({ route }) => (
@@ -301,7 +301,7 @@ function Bus() {
           className="space-y-6"
         >
           <AnimatePresence>
-            {filteredRoutes.map((route, index) => (
+            {filteredRoutes.map((route) => (
               <motion.div
                 key={route.busNumber}
                 layout
