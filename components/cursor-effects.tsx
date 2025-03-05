@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 interface SparkParticle {
   id: number;
@@ -95,7 +96,7 @@ export function CursorEffects() {
       window.removeEventListener('mousemove', handleMouseMove)
       clearInterval(animationFrame)
     }
-  }, [])
+  }, [colors])
 
   if (!isClient) return null
 
@@ -113,9 +114,11 @@ export function CursorEffects() {
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         >
           <div className="absolute inset-0 bg-violet-500/20 rounded-full blur-md" />
-          <img 
+          <Image 
             src="/cursors/default-cursor.png" 
             alt=""
+            width={32}
+            height={32}
             className="w-full h-full object-contain relative z-10"
           />
         </motion.div>

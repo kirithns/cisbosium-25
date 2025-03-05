@@ -4,10 +4,18 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { FaWhatsapp } from 'react-icons/fa'
+import { FaUserPlus } from 'react-icons/fa'
+import { useState } from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Trophy, Users, Calendar } from 'lucide-react'
-import { FaWhatsapp, FaUserPlus } from 'react-icons/fa'
-import { useState } from 'react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },

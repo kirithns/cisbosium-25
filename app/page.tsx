@@ -43,7 +43,7 @@ const events = [
     image: "/rs.png",
     coordinators: "Varshaa, Aswin and Partha",
     icon: "GraduationCap",
-    details: "Craft your groundbreaking research into a compelling paper and showcase your clarity, creativity, and thought leadership. Research Guru invites students from diverse fields to present their innovative ideas and research without any domain restrictions.",
+    details: "Craft your groundbreaking research into a compelling paper and showcase your clarity, creativity, and thought leadership. Research Guru invites students from diverse fields to present their innovative ideas and research without any domain restrictions.",
     rules: [
       "Abstract submissions are mandatory before the deadline.",
       "Papers must follow the IEEE format.",
@@ -87,11 +87,11 @@ const events = [
   },
   {
     title: "Think Hack",
-    description: "Crack the code, race the clock—to seize the Ultimate Innovator title!.",
+    description: "Crack the code, race the clock—to seize the Ultimate Innovator title!.",
     image: "/th.png",
     coordinators: "Siva, Sharvesh Guru, Nivetha",
     icon: "BrainCircuit",
-    details: "Put your skills to the test in this high-energy hackathon!  Compete, create, and showcase your problem-solving abilities in an unforgettable experience.",
+    details: "Put your skills to the test in this high-energy hackathon!  Compete, create, and showcase your problem-solving abilities in an unforgettable experience.",
     rules: [
       "Teams of 1-3 members allowed.",
       "Participants should bring their own laptops.",

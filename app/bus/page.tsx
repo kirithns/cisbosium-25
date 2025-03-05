@@ -5,6 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiMapPin, FiX } from 'react-icons/fi';
 import { FaBus } from 'react-icons/fa';
 import { Button } from "@/components/ui/button";
+import Image from "next/image"
+import Link from "next/link"
+import { Card } from "@/components/ui/card"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { CalendarDays } from 'lucide-react'
 
 interface Route {
   place: string;
@@ -58,12 +63,12 @@ const RouteAnimation = ({ route, isOpen, onClose }: { route: Route; isOpen: bool
             <div className="relative mt-8 pb-8">
               <div className="absolute left-4 top-0 bottom-0 w-1 bg-violet-500/20" />
               
-              {stops.map((stop, index) => {
-                const isCurrentStop = index === currentStopIndex;
-                const isPastStop = index < currentStopIndex;
+              {stops.map((stop) => {
+                const isCurrentStop = stop === stops[currentStopIndex];
+                const isPastStop = stops.indexOf(stop) < currentStopIndex;
 
                 return (
-                  <div key={index} className="relative mb-6 pl-12">
+                  <div key={stop} className="relative mb-6 pl-12">
                     <div className={`absolute left-3 w-3 h-3 rounded-full transform -translate-x-1/2 transition-all duration-300
                       ${isCurrentStop ? 'bg-violet-400 scale-125' : isPastStop ? 'bg-violet-400/50' : 'bg-violet-400/30'}
                       border-2 ${isCurrentStop ? 'border-violet-500' : 'border-violet-500/30'}`} 
@@ -71,7 +76,7 @@ const RouteAnimation = ({ route, isOpen, onClose }: { route: Route; isOpen: bool
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: stops.indexOf(stop) * 0.1 }}
                       className={`text-white/90 transition-opacity duration-300
                         ${isCurrentStop ? 'text-white' : isPastStop ? 'text-white/70' : 'text-white/50'}`}
                     >
