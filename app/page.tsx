@@ -308,7 +308,7 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/cis.png"
+                  src="/cs.png"
                   alt="CSBS Symposium Logo"
                   fill
                   className="object-contain mix-blend-screen"
