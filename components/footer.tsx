@@ -52,10 +52,22 @@ const Footer = () => {
             </address>
           </div>
         </div>
-        <div className="mt-8 border-t border-violet-700/50 pt-8 text-center">
-          <p className="text-sm text-gray-300">
-            &copy; 2025 CSBS Symposium. All rights reserved. Organized by Department of Computer Science and Business Systems
-          </p>
+        <div className="mt-8 border-t border-violet-700/50 pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gold-500">
+              &copy; 2025 CSBS Symposium. All rights reserved. Organized by Department of Computer Science and Business Systems
+            </p>
+            <div className="relative group">
+              <p className="text-sm font-bold text-violet-200 transform transition-all duration-300 cursor-default">
+                Done by{" "}
+                <span className="inline-flex animate-wave">
+                  <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-[length:200%_100%] animate-gradient bg-clip-text text-transparent">
+                    Kirith N , Dhanush H
+                  </span>
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
