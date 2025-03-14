@@ -122,7 +122,7 @@ const events = [
     title: "MystIQ",
     description: "Unravel cryptic clues and uncover a hidden secret!",
     image: "/m.jpg",
-    coordinators: "Sarvesh, joilin, Rithu Varshini",
+    coordinators: "Sarvesh, Rithu Varshini",
     details: "Solve puzzles and decipher messages in this thrilling adventure. Put your detective skills to the test!",
     rules: [
       "Participants must register before the event.",
@@ -283,6 +283,16 @@ export default function Events() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         )}
                       </div>
+                      {event.title === "Stock Market Challenge" && (
+                        <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                          <p className="text-red-500 font-medium text-sm flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                            </svg>
+                            Registration Closed - Event Full
+                          </p>
+                        </div>
+                      )}
                       <p className="mt-4 text-gray-600 dark:text-gray-300">{event.description}</p>
                     </CardContent>
                     <CardFooter className="flex flex-wrap justify-center sm:justify-between mt-auto gap-3 sm:gap-4 p-4 sm:p-6">
@@ -304,13 +314,19 @@ export default function Events() {
                           href={event.registrationLink}
                           target="_blank"
                           rel="noopener noreferrer"
+                          className={event.title === "Stock Market Challenge" ? "pointer-events-none" : ""}
                         >
                           <Button 
                             variant="outline" 
-                            className="bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-all duration-300 flex items-center gap-2"
+                            className={`flex items-center gap-2 ${
+                              event.title === "Stock Market Challenge"
+                                ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed"
+                                : "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-800/50"
+                            } transition-all duration-300`}
+                            disabled={event.title === "Stock Market Challenge"}
                           >
                             <FaUserPlus className="w-4 h-4" />
-                            Register
+                            {event.title === "Stock Market Challenge" ? "Registration Closed" : "Register"}
                           </Button>
                         </Link>
                         <Dialog>
@@ -570,13 +586,19 @@ export default function Events() {
                         href={event.registrationLink}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className={event.title === "Stock Market Challenge" ? "pointer-events-none" : ""}
                       >
                         <Button 
                           variant="outline" 
-                          className="bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-all duration-300 flex items-center gap-2"
+                          className={`flex items-center gap-2 ${
+                            event.title === "Stock Market Challenge"
+                              ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed"
+                              : "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-800/50"
+                          } transition-all duration-300`}
+                          disabled={event.title === "Stock Market Challenge"}
                         >
                           <FaUserPlus className="w-4 h-4" />
-                          Register
+                          {event.title === "Stock Market Challenge" ? "Registration Closed" : "Register"}
                         </Button>
                       </Link>
                       <Dialog>
