@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image"
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,6 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Users } from 'lucide-react'
+import { AlertTriangle } from 'lucide-react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -261,9 +261,15 @@ export default function Events() {
                 >
                   <Card className="group h-full flex flex-col bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-violet-100 dark:border-violet-900 hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300">
                     <CardHeader className="p-4 sm:p-6">
-                      <CardTitle className="text-lg sm:text-xl text-violet-800 dark:text-violet-200 flex items-center justify-between">
-                        {event.title}
-                      </CardTitle>
+                      <div className="flex justify-between items-start">
+                        <CardTitle className="text-lg sm:text-xl text-violet-800 dark:text-violet-200">
+                          {event.title}
+                        </CardTitle>
+                        <span className="px-2 py-1 text-xs font-semibold bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 rounded-full flex items-center gap-1 animate-pulse">
+                          <AlertTriangle className="w-3 h-3 animate-bounce" />
+                          Registration Closed
+                        </span>
+                      </div>
                       <CardDescription className="text-sm flex items-center gap-2 text-violet-600 dark:text-violet-400">
                         <Users className="w-4 h-4" />
                         Coordinators: {event.coordinators}
@@ -283,52 +289,26 @@ export default function Events() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         )}
                       </div>
-                      {event.title === "Stock Market Challenge" && (
-                        <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                          <p className="text-red-500 font-medium text-sm flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                            </svg>
-                            Registration Closed - Event Full
-                          </p>
-                        </div>
-                      )}
                       <p className="mt-4 text-gray-600 dark:text-gray-300">{event.description}</p>
                     </CardContent>
                     <CardFooter className="flex flex-wrap justify-center sm:justify-between mt-auto gap-3 sm:gap-4 p-4 sm:p-6">
                       <div className="flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 items-center">
-                        <Link
-                          href={event.whatsappLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Button 
+                          variant="outline" 
+                          disabled
+                          className="bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed transition-all duration-300 flex items-center gap-2"
                         >
-                          <Button 
-                            variant="outline" 
-                            className="bg-green-50 dark:bg-green-900/50 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-800/50 transition-all duration-300 flex items-center gap-2"
-                          >
-                            <FaWhatsapp className="w-4 h-4" />
-                            Join Group
-                          </Button>
-                        </Link>
-                        <Link
-                          href={event.registrationLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={event.title === "Stock Market Challenge" ? "pointer-events-none" : ""}
+                          <FaWhatsapp className="w-4 h-4" />
+                          Join Group
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          disabled
+                          className="bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed transition-all duration-300 flex items-center gap-2"
                         >
-                          <Button 
-                            variant="outline" 
-                            className={`flex items-center gap-2 ${
-                              event.title === "Stock Market Challenge"
-                                ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed"
-                                : "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-800/50"
-                            } transition-all duration-300`}
-                            disabled={event.title === "Stock Market Challenge"}
-                          >
-                            <FaUserPlus className="w-4 h-4" />
-                            {event.title === "Stock Market Challenge" ? "Registration Closed" : "Register"}
-                          </Button>
-                        </Link>
+                          <FaUserPlus className="w-4 h-4" />
+                          Register
+                        </Button>
                         <Dialog>
                           <DialogTrigger asChild>
                             <Button 
@@ -543,9 +523,15 @@ export default function Events() {
               >
                 <Card className="group h-full flex flex-col bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-violet-100 dark:border-violet-900 hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300">
                   <CardHeader className="p-4 sm:p-6">
-                    <CardTitle className="text-lg sm:text-xl text-violet-800 dark:text-violet-200 flex items-center justify-between">
-                      {event.title}
-                    </CardTitle>
+                    <div className="flex justify-between items-start">
+                      <CardTitle className="text-lg sm:text-xl text-violet-800 dark:text-violet-200">
+                        {event.title}
+                      </CardTitle>
+                      <span className="px-2 py-1 text-xs font-semibold bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 rounded-full flex items-center gap-1 animate-pulse">
+                        <AlertTriangle className="w-3 h-3 animate-bounce" />
+                        Registration Closed
+                      </span>
+                    </div>
                     <CardDescription className="text-sm flex items-center gap-2 text-violet-600 dark:text-violet-400">
                       <Users className="w-4 h-4" />
                       Coordinators: {event.coordinators}
@@ -569,38 +555,22 @@ export default function Events() {
                   </CardContent>
                   <CardFooter className="flex flex-wrap justify-center sm:justify-between mt-auto gap-3 sm:gap-4 p-4 sm:p-6">
                     <div className="flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 items-center">
-                      <Link
-                        href={event.whatsappLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Button 
+                        variant="outline" 
+                        disabled
+                        className="bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed transition-all duration-300 flex items-center gap-2"
                       >
-                        <Button 
-                          variant="outline" 
-                          className="bg-green-50 dark:bg-green-900/50 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-800/50 transition-all duration-300 flex items-center gap-2"
-                        >
-                          <FaWhatsapp className="w-4 h-4" />
-                          Join Group
-                        </Button>
-                      </Link>
-                      <Link
-                        href={event.registrationLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={event.title === "Stock Market Challenge" ? "pointer-events-none" : ""}
+                        <FaWhatsapp className="w-4 h-4" />
+                        Join Group
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        disabled
+                        className="bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed transition-all duration-300 flex items-center gap-2"
                       >
-                        <Button 
-                          variant="outline" 
-                          className={`flex items-center gap-2 ${
-                            event.title === "Stock Market Challenge"
-                              ? "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 cursor-not-allowed"
-                              : "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-800/50"
-                          } transition-all duration-300`}
-                          disabled={event.title === "Stock Market Challenge"}
-                        >
-                          <FaUserPlus className="w-4 h-4" />
-                          {event.title === "Stock Market Challenge" ? "Registration Closed" : "Register"}
-                        </Button>
-                      </Link>
+                        <FaUserPlus className="w-4 h-4" />
+                        Register
+                      </Button>
                       <Dialog>
                         <DialogTrigger asChild>
                           <Button 
